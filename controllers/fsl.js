@@ -1,11 +1,22 @@
 import express from "express";
 import FslModel from "../models/fsl.js";
-
+import * as upload from "../utilty/cloudinaryService.js";
 
 export async function createFsl(req, res) {
    try {
-      console.log(req.body)
-      const createnewFsl = new FslModel(req.body);
+      console.log(`>>>>>>>>>>>req.files`,req.files);
+     
+      
+    const file = req.files
+    const uploadData = await upload.uploadImages(file);    
+   //  const newURL = uploadData.map(item=>item.url);
+    const aadharFront = uploadData[0].url
+    const aadharBack = uploadData[1].url
+    let data = req.body
+    data.aadharFront =aadharFront
+    data.aadharBack =aadharBack
+    console.log(`>>>>>>data`,data);
+      const createnewFsl = new FslModel(data);
       await createnewFsl.save();
       res.status(201).json(createnewFsl)
    } catch (err) {
@@ -30,21 +41,21 @@ export async function getOneIdFsls(req, res) {
       res.status(200).json(Fsls);
 }
 
-export async function putOneFsls(req, res) {
-   try {
-      const updateOneFsls = await BorrowerModel.findByIdAndUpdate(
-         req.params.id,
-         req.body,
-         { new: true } 
-      );
-      if (!updateOneFsls)
-         return res.status(404).json({ error: 'Borrower not found' });
-         res.status(200).json(updateOneFsls);
-   } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Failed to update single data', details: err.message });
-   }
-}
+// export async function putOneFsls(req, res) {
+//    try {
+//       const updateOneFsls = await BorrowerModel.findByIdAndUpdate(
+//          req.params.id,
+//          req.body,
+//          { new: true } 
+//       );
+//       if (!updateOneFsls)
+//          return res.status(404).json({ error: 'Borrower not found' });
+//          res.status(200).json(updateOneFsls);
+//    } catch (err) {
+//       console.error(err);
+//       res.status(500).json({ error: 'Failed to update single data', details: err.message });
+//    }
+// }
 
 export async function deleteFsl(req, res) {
    const deleteFsl = await FslModel.findByIdAndDelete(req.params.id);
