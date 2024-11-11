@@ -1,11 +1,11 @@
 import express from "express";
 import FslModel from "../models/fsl.js";
-import * as upload from "../utilty/cloudinaryService.js";
+import { uploadImages } from "../utilty/cloudinaryService.js";
 
 export async function createFsl(req, res) {
    try {
       const file = req.files
-      const uploadData = await upload.uploadImages(file);
+      const uploadData = await uploadImages(file);
       const aadharFront = uploadData[0].url
       const aadharBack = uploadData[1].url
       let data = req.body

@@ -8,7 +8,13 @@ import cors from "cors"
 const app = express();
 const PORT = 9090;
 
-app.use(cors())
+const corsOptions = {
+    origin: ['http://localhost:5173/'], // Specify allowed origins here
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+  };
+
+app.use(cors(corsOptions))
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
