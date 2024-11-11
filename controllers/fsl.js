@@ -4,18 +4,14 @@ import * as upload from "../utilty/cloudinaryService.js";
 
 export async function createFsl(req, res) {
    try {
-      console.log(`>>>>>>>>>>>req.files`,req.files);
-     
-      
-    const file = req.files
-    const uploadData = await upload.uploadImages(file);    
-   //  const newURL = uploadData.map(item=>item.url);
-    const aadharFront = uploadData[0].url
-    const aadharBack = uploadData[1].url
-    let data = req.body
-    data.aadharFront =aadharFront
-    data.aadharBack =aadharBack
-    console.log(`>>>>>>data`,data);
+      const file = req.files
+      const uploadData = await upload.uploadImages(file);
+      const aadharFront = uploadData[0].url
+      const aadharBack = uploadData[1].url
+      let data = req.body
+      data.aadharFront = aadharFront
+      data.aadharBack = aadharBack
+      console.log(`>>>>>>data`, data);
       const createnewFsl = new FslModel(data);
       await createnewFsl.save();
       res.status(201).json(createnewFsl)
@@ -36,9 +32,9 @@ export async function getFsls(req, res) {
 }
 
 export async function getOneIdFsls(req, res) {
-      const Fsls = await FslModel.findById(req.params.id)
-      console.log(Fsls)
-      res.status(200).json(Fsls);
+   const Fsls = await FslModel.findById(req.params.id)
+   console.log(Fsls)
+   res.status(200).json(Fsls);
 }
 
 // export async function putOneFsls(req, res) {

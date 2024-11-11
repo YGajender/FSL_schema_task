@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const FslSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
-    phone: { type: String, required: true},
+    phone: { type: Number, required: true},
     dob: { type: Date, required: true },
     gender: { type: String, required: true },
     aadharFront: { type: String, required: true },
@@ -13,7 +13,7 @@ const FslSchema = new mongoose.Schema({
     paddress: { type: String, required: true },
 
     fname: { type: String, required: true },
-    fphone: { type: String, required: true },
+    fphone: { type: Number, required: true },
 
     areYoua: { type: String, required: true },
     qualification: { type: String },
@@ -26,7 +26,7 @@ const FslSchema = new mongoose.Schema({
     knowus: { type: String, required: true },
     friendname: { type: String },
 
-    // Terms_condition: { type: Boolean, required: true }
+    Terms_condition: { type: Boolean, required: true }
 },
 {timestamps:true,versionKey:false});
 const FslModel = mongoose.model("fsl", FslSchema);

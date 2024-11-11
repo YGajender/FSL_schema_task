@@ -3,9 +3,12 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import fileUpload from "express-fileupload"; //the middelware
 import router from './routes/route.js'; //Extension is mandatory
+import cors from "cors"
  
 const app = express();
 const PORT = 9090;
+
+app.use(cors())
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
