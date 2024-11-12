@@ -24,7 +24,7 @@ app.use(fileUpload())
 
 try {
   await mongoose.connect(
-    'mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.wrd9j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+    `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.wrd9j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
   )
 } catch (err) {
   console.log(err)
