@@ -20,7 +20,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(fileUpload())
 
-mongoose.connect(process.env.MONGODB).then(()=>console.log("connection Successfull"));
+// mongoose.connect(process.env.MONGODB).then(()=>console.log("connection Successfull"));
+
+try{
+  await mongoose.connect(
+    'mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.wrd9j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+  )
+}
 
 
 app.use("/", router);
