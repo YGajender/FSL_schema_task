@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+// import generatePassword from "../utilty/generatePassword.js";
 
 const FslSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
-    phone: { type: Number, required: true},
+    phone: { type: Number, required: true },
     dob: { type: Date, required: true },
     gender: { type: String, required: true },
     aadharFront: { type: String, required: true },
@@ -26,8 +27,9 @@ const FslSchema = new mongoose.Schema({
     knowus: { type: String, required: true },
     friendname: { type: String },
 
-    Terms_condition: { type: Boolean, required: true }
+    Terms_condition: { type: Boolean, required: true },
+    password: { type: String}
 },
-{timestamps:true,versionKey:false});
+    { timestamps: true, versionKey: false });
 const FslModel = mongoose.model("fsl", FslSchema);
 export default FslModel;
