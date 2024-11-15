@@ -3,6 +3,7 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import fileUpload from "express-fileupload"; //the middelware
 import router from './routes/route.js'; //Extension is mandatory
+import visitorRouter from './routes/visiterRoute.js';
 import cors from "cors"
 
 const app = express();
@@ -32,5 +33,6 @@ try {
 
 
 app.use("/", router);
+app.use("/visitor", visitorRouter);
 
 app.listen(PORT, () => console.log("Server started at port" + PORT))

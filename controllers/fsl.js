@@ -35,7 +35,7 @@ export async function createFsl(req, res) {
    }
 }
 
-export async function getFsls(req, res) {
+export async function getUserFsls(req, res) {
    try {
       const Fsls = await FslModel.find();
       res.status(200).json(Fsls);
@@ -45,27 +45,28 @@ export async function getFsls(req, res) {
    }
 }
 
-export async function getOneIdFsls(req, res) {
+export async function getOneUserFsls(req, res) {
    const Fsls = await FslModel.findById(req.params.id)
    console.log(Fsls)
    res.status(200).json(Fsls);
 }
 
-// export async function putOneFsls(req, res) {
-//    try {
-//       const updateOneFsls = await BorrowerModel.findByIdAndUpdate(
-//          req.params.id,
-//          req.body,
-//          { new: true } 
-//       );
-//       if (!updateOneFsls)
-//          return res.status(404).json({ error: 'Borrower not found' });
-//          res.status(200).json(updateOneFsls);
-//    } catch (err) {
-//       console.error(err);
-//       res.status(500).json({ error: 'Failed to update single data', details: err.message });
-//    }
-// }
+export async function putOneFsls(req, res) {
+   try {
+      const updateOneFsls = await BorrowerModel.findByIdAndUpdate(
+         req.params.id,
+         req.body,
+         { new: true } 
+      );
+      if (!updateOneFsls)
+         return res.status(404).json({ error: 'Borrower not found' });
+         res.status(200).json(updateOneFsls);
+   } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to update single data', details: err.message });
+   }
+}  
+
 
 export async function deleteFsl(req, res) {
    const deleteFsl = await FslModel.findByIdAndDelete(req.params.id);
